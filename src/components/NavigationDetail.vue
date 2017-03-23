@@ -46,7 +46,7 @@
     ],
     methods: {
       goBack: function (event) {
-        this.$router.go(-1);
+        this.$router.replace({ name: 'navigationMaster' });
       }
     }
   }

@@ -2,6 +2,11 @@
   <v-ons-page>
     <v-ons-toolbar>
       <div class="center">Simple Navigation</div>
+      <div class="right">
+        <v-ons-toolbar-button modifier="quiet" @click="$router.replace({ name: 'home' })">
+          Home
+        </v-ons-toolbar-button>
+      </div>
     </v-ons-toolbar>
     <v-ons-list>
       <v-ons-list-item modifier="chevron" class="item" v-for="(item, index) in items" :key="item.title" @click="$router.push({ name: 'navigationDetail', params: { detail: item } })">
@@ -19,6 +24,7 @@
         </v-ons-row>
       </v-ons-list-item>
     </v-ons-list>
+    <router-link to="/splitterMain">Explore Splitter</router-link>
   </v-ons-page>
 </template>
 
