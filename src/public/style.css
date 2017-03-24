@@ -1,3 +1,15 @@
+#home-tabs {
+  margin-top: 10%;
+  height: 20%;
+  text-align: center;
+}
+
+.home-button {
+  width: 90%;
+  text-align: center;
+  overflow-wrap: normal;
+}
+
 .item {
   padding: 10px;
   line-height: 1;
@@ -29,70 +41,49 @@
   float: right;
 }
 
-.page--menu-page__background {
-  background-color: #333;
-}
-
-.page--menu-page__content {
-  color: white;
-}
-
-.menu-close,
-.menu-close > .toolbar-button {
-  color: #999;
-}
-
-.menu-list,
-.menu-item:first-child,
-.menu-item:last-child,
-.menu-item {
-  background-color: transparent;
-  background-image: none !important;
-  border-color: transparent;
-  color: #fff;
+.menu-main {
+  font-weight: bold;
+  font-size: 20px;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .menu-item {
-  padding: 0 0 0 20px;
-  line-height: 52px;
-  height: 52px;
+  line-height: 50px;
+  height: 50px;
   text-shadow: rgba(0, 0, 0, 0.4) 0px 1px 0px;
 }
 
-.menu-item:active {
-  background-color: rgba(255, 255, 255, 0.1);
+.menu-main ons-icon {
+  margin-right: 5%;
 }
 
-.menu-notification {
-  display: inline-block;
-  margin-top: 12px;
-  font-size: 14px;
-  height: 16px;
-  line-height: 16px;
-  min-width: 16px;
-  font-weight: 600;
+.menu-item ons-icon {
+  width: 10%;
+  margin-right: 5%;
 }
 
-.bottom-menu-list,
-.bottom-menu-item:first-child,
-.bottom-menu-item:last-child,
-.bottom-menu-item {
-  border-color: #393939;
-  background-color: transparent;
-  background-image: none !important;
-  color: #ccc;
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
 }
 
-.bottom-menu-item:active {
-  background-color: rgba(255, 255, 255, 0.1);
+.fade-enter, .fade-leave-to {
+  opacity: 0
 }
 
-.ons-back-button__icon {
-  vertical-align: top;
-  font-size: 36px;
-  margin-left: 8px;
-  margin-right: 2px;
-  width: 16px;
-  display: inline-block;
-  padding-top: 1px;
+.slide-enter-active, .slide-leave-active {
+  transition: all .5s ease;
+}
+
+.slide-enter, .slide-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
+.slide-splitter-enter-active, .slide-splitter-leave-active {
+  transition: all .5s ease;
+}
+
+.slide-splitter-enter, .slide-splitter-leave-to {
+  transform: translateX(-10px);
+  opacity: 0;
 }
