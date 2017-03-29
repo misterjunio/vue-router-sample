@@ -39,13 +39,13 @@
 
 <script>
   export default {
-    name: 'navigationDetail',
     props: [
-      'detail'
+      'detail',
+      'pageStack'
     ],
     methods: {
       goBack: function (event) {
-        this.$router.replace({ name: 'navigationMaster' });
+        this.pageStack.pop();
       }
     }
   }

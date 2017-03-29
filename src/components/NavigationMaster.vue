@@ -1,40 +1,38 @@
 <template>
-  <transition name="slide">
-    <v-ons-page>
-      <v-ons-toolbar>
-        <div class="center">Simple Navigation</div>
-        <div class="right">
-          <v-ons-toolbar-button modifier="quiet" @click="$router.replace({ name: 'home' })">
-            Home
-          </v-ons-toolbar-button>
-        </div>
-      </v-ons-toolbar>
-      <v-ons-list>
-        <v-ons-list-item modifier="chevron" class="item" v-for="(item, index) in items" :key="item.title" @click="$router.push({ name: 'navigationDetail', params: { detail: item } })">
-          <v-ons-row>
-            <v-ons-col width="60px">
-              <div class="item-thum"></div>
-            </v-ons-col>
-            <v-ons-col>
-              <header>
-                <span class="item-title">{{item.title}}</span>
-                <span class="item-label">{{item.label}}</span>
-              </header>
-              <p class="item-desc">{{item.desc}}</p>
-            </v-ons-col>
-          </v-ons-row>
-        </v-ons-list-item>
-      </v-ons-list>
-      <p style="margin-top: 5%; text-align:center">
-        Let's switch to <v-ons-button modifier="cta" @click="$router.push({ path: '/splitterMain' })">the Splitter</v-ons-button> >>
-      </p>
-    </v-ons-page>
-  </transition>
+  <v-ons-page>
+    <v-ons-toolbar>
+      <div class="center">Simple Navigation</div>
+      <div class="right">
+        <v-ons-toolbar-button modifier="quiet" @click="$router.replace({ name: 'home' })">
+          Home
+        </v-ons-toolbar-button>
+      </div>
+    </v-ons-toolbar>
+    <v-ons-list>
+      <v-ons-list-item modifier="chevron" class="item" v-for="(item, index) in items" :key="item.title" @click="$router.push({ name: 'navigationDetail', params: { detail: item } })">
+        <v-ons-row>
+          <v-ons-col width="60px">
+            <div class="item-thum"></div>
+          </v-ons-col>
+          <v-ons-col>
+            <header>
+              <span class="item-title">{{item.title}}</span>
+              <span class="item-label">{{item.label}}</span>
+            </header>
+            <p class="item-desc">{{item.desc}}</p>
+          </v-ons-col>
+        </v-ons-row>
+      </v-ons-list-item>
+    </v-ons-list>
+    <p style="margin-top: 5%; text-align:center">
+      Let's switch to <v-ons-button modifier="cta" @click="$router.push({ path: '/splitterMain' })">the Splitter</v-ons-button> >>
+    </p>
+  </v-ons-page>
 </template>
 
 <script>
+  import navigationDetail from './NavigationDetail';
   export default {
-    name: 'navigationMaster',
     data() {
       return {
         items: [
@@ -60,6 +58,34 @@
           }
         ]
       };
+    },
+    props: [
+      'pageStack'
+    ],
+    beforeRouteEnter (to, from, next) {
+      console.log('enter', to);
+      next(vm => {
+        console.log('route enter', vm);
+      })
+    },
+    beforeRouteLeave (to, from, next) {
+      this.next = next;
+      console.log('from', from);
+      console.log('to', to);
+      if (to.name === 'navigationDetail') {
+        this.pageStack.push({
+          extends: navigationDetail,
+          data() {
+            return {
+              detail: to.params.detail
+            }
+          }
+        });
+      }
+      else {
+        console.log('next');
+        next();
+      }
     }
-  }
+  };
 </script>

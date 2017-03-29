@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../components/Home'
+import NavigationMain from '../components/NavigationMain'
 import NavigationMaster from '../components/NavigationMaster'
 import NavigationDetail from '../components/NavigationDetail'
 import SplitterMain from '../components/SplitterMain'
@@ -11,6 +12,7 @@ import SplitterPage2 from '../components/SplitterPage2'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -18,15 +20,21 @@ export default new Router({
       component: Home
     },
     {
-      path: '/navigationMaster',
-      name: 'navigationMaster',
-      component: NavigationMaster
-    },
-    {
-      path: '/navigation/:detail',
-      name: 'navigationDetail',
-      component: NavigationDetail,
-      props: true
+      path: '/navigationMain',
+      component: NavigationMain,
+      children: [
+        {
+          path: '',
+          component: NavigationMaster,
+          props: true
+        },
+        {
+          path: '/navigation/:detail',
+          name: 'navigationDetail',
+          component: NavigationDetail,
+          props: true
+        }
+      ]
     },
     {
       path: '/splitterMain',
