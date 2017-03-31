@@ -2,7 +2,7 @@
   <v-ons-page>
     <v-ons-toolbar>
       <div class="left">
-        <v-ons-back-button @click.prevent="goBack">Back</v-ons-back-button>
+        <v-ons-back-button @click.prevent="$router.go(-1)">Back</v-ons-back-button>
       </div>
       <div class="center">Details</div>
     </v-ons-toolbar>
@@ -34,6 +34,9 @@
         <p class="item-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
       </v-ons-list-item>
     </v-ons-list>
+    <p style="margin-top: 5%; text-align:center">
+      <v-ons-button modifier="cta" @click="logit()">Test</v-ons-button>
+    </p>
   </v-ons-page>
 </template>
 
@@ -44,9 +47,13 @@
       'pageStack'
     ],
     methods: {
-      goBack: function (event) {
-        this.pageStack.pop();
+      logit() {
+        console.log(this.pageStack);
       }
+    },
+    beforeRouteLeave (to, from, next) {
+      this.pageStack.pop();
+      next();
     }
   }
 </script>

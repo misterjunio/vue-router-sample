@@ -8,10 +8,10 @@
       <div class="content">
         <v-ons-row id="home-tabs">
           <v-ons-col>
-            <v-ons-button modifier="cta" class="home-button" @click="goTo('/navigationMain')">Explore Navigator</v-ons-button>
+            <v-ons-button modifier="cta" class="home-button" @click="$router.push({ name: 'navigationMaster' })">Explore Navigator</v-ons-button>
           </v-ons-col>
           <v-ons-col>
-            <v-ons-button modifier="cta" class="home-button" @click="goTo('/splitterMain')">Explore Splitter</v-ons-button>
+            <v-ons-button modifier="cta" class="home-button" @click="$router.push('/splitterMain')">Explore Splitter</v-ons-button>
           </v-ons-col>
         </v-ons-row>
         <router-view></router-view>
@@ -21,11 +21,4 @@
 </template>
 
 <script>
-  export default {
-    methods: {
-      goTo: function(page) {
-        this.$router.push(page);
-      }
-    }
-  }
 </script>

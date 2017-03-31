@@ -25,11 +25,12 @@ export default new Router({
       children: [
         {
           path: '',
+          name: 'navigationMaster',
           component: NavigationMaster,
           props: true
         },
         {
-          path: '/navigation/:detail',
+          path: ':detail',
           name: 'navigationDetail',
           component: NavigationDetail,
           props: true

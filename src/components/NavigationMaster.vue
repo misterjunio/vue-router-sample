@@ -9,7 +9,7 @@
       </div>
     </v-ons-toolbar>
     <v-ons-list>
-      <v-ons-list-item modifier="chevron" class="item" v-for="(item, index) in items" :key="item.title" @click="$router.push({ name: 'navigationDetail', params: { detail: item } })">
+      <v-ons-list-item modifier="chevron" class="item" v-for="(item, index) in items" :key="item.title" @click="$router.push({ name: 'navigationDetail', params: { detail: item, pageStack: pageStack } })">
         <v-ons-row>
           <v-ons-col width="60px">
             <div class="item-thum"></div>
@@ -26,6 +26,9 @@
     </v-ons-list>
     <p style="margin-top: 5%; text-align:center">
       Let's switch to <v-ons-button modifier="cta" @click="$router.push({ path: '/splitterMain' })">the Splitter</v-ons-button> >>
+    </p>
+    <p style="margin-top: 5%; text-align:center">
+      <v-ons-button modifier="cta" @click="logit()">Test</v-ons-button>
     </p>
   </v-ons-page>
 </template>
@@ -56,36 +59,22 @@
             label: '3 days ago',
             desc: 'Minim veniam aute irure dolor in eiusmod tempor incididunt ut labore et dolore eu fugiat nulla pariatur.'
           }
-        ]
+        ],
       };
     },
     props: [
       'pageStack'
     ],
-    beforeRouteEnter (to, from, next) {
-      console.log('enter', to);
-      next(vm => {
-        console.log('route enter', vm);
-      })
+    methods: {
+      logit() {
+        console.log(this.pageStack);
+      }
     },
     beforeRouteLeave (to, from, next) {
-      this.next = next;
-      console.log('from', from);
-      console.log('to', to);
       if (to.name === 'navigationDetail') {
-        this.pageStack.push({
-          extends: navigationDetail,
-          data() {
-            return {
-              detail: to.params.detail
-            }
-          }
-        });
+        this.pageStack.push(navigationDetail);
       }
-      else {
-        console.log('next');
-        next();
-      }
+      next();
     }
   };
 </script>
